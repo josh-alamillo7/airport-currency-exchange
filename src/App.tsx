@@ -18,6 +18,7 @@ class App extends React.Component <{}, {isLoggedIn: boolean}> {
     this.state = {
       isLoggedIn: false
     };
+    this.handleLoginClick = this.handleLoginClick.bind(this);
   }
 
   public handleLoginClick(input: string) {
@@ -36,19 +37,23 @@ class App extends React.Component <{}, {isLoggedIn: boolean}> {
 
   public render() {
 
-    const exact: boolean = true;
-
     const home = () => {
       if (this.state.isLoggedIn) {
         return <div>Home page coming</div>;
       }
 
-      return <Login />;
+      return <Login handleLoginClick={this.handleLoginClick} />;
     };
 
     const admin = () => {
-      return <div>Admin page coming</div>;
+      if (this.state.isLoggedIn) {
+        return <div>Admin page coming</div>;
+      }
+
+      return <Login handleLoginClick={this.handleLoginClick} />;
     };
+
+    const exact: boolean = true;
 
     return (<Router>
         <div className="App">
