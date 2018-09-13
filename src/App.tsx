@@ -5,10 +5,32 @@ import {
   Route
 } from 'react-router-dom';
 import HeaderButtons from './HeaderButtons';
+import password from './config';
 
 import logo from './logo.jpg';
 
 class App extends React.Component {
+
+  constructor(props: object) {
+    super(props);
+    this.state = {
+      isLoggedIn: false
+    };
+  }
+
+  public handleLoginClick(input: string) {
+    let mismatchCounter = 0;
+    for (let idx = 0; idx < input.length; idx++) {
+      if (input[idx] === password[idx]) {
+        mismatchCounter++;
+      }
+    }
+    if (mismatchCounter) {
+      this.setState({
+        isLoggedIn: true
+      });
+    }
+  }
 
   public render() {
 
