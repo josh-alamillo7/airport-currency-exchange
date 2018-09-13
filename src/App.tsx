@@ -2,18 +2,35 @@ import * as React from 'react';
 import './App.css';
 import {
   BrowserRouter as Router,
+  Route
 } from 'react-router-dom';
 
 import logo from './logo.jpg';
 
 class App extends React.Component {
   public render() {
+
+    const exact: boolean = true;
+
+    const home = () => {
+      return <div>Home</div>;
+    };
+
+    const admin = () => {
+      return <div>Admin</div>;
+    };
+
     return (<Router>
         <div className="App">
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <h1 className="App-title">Airport Currency Exchange Office</h1>
           </header>
+
+          <Route exact={exact} path="/" component={home}/>
+          <Route path="/home" component={home}/>
+          <Route path="/admin" component={admin}/>
+
         </div>
       </Router>
     );
