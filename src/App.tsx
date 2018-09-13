@@ -5,11 +5,13 @@ import {
   Route
 } from 'react-router-dom';
 import HeaderButtons from './HeaderButtons';
+import Login from './Login';
+
 import password from './config';
 
 import logo from './logo.jpg';
 
-class App extends React.Component {
+class App extends React.Component <{}, {isLoggedIn: boolean}> {
 
   constructor(props: object) {
     super(props);
@@ -37,7 +39,11 @@ class App extends React.Component {
     const exact: boolean = true;
 
     const home = () => {
-      return <div>Home page coming</div>;
+      if (this.state.isLoggedIn) {
+        return <div>Home page coming</div>;
+      }
+
+      return <Login />;
     };
 
     const admin = () => {
