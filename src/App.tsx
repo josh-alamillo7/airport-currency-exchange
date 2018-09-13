@@ -4,20 +4,22 @@ import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom';
+import HeaderButtons from './HeaderButtons';
 
 import logo from './logo.jpg';
 
 class App extends React.Component {
+
   public render() {
 
     const exact: boolean = true;
 
     const home = () => {
-      return <div>Home</div>;
+      return <div>Home page coming</div>;
     };
 
     const admin = () => {
-      return <div>Admin</div>;
+      return <div>Admin page coming</div>;
     };
 
     return (<Router>
@@ -25,6 +27,7 @@ class App extends React.Component {
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <h1 className="App-title">Airport Currency Exchange Office</h1>
+            <HeaderButtons />
           </header>
 
           <Route exact={exact} path="/" component={home}/>
