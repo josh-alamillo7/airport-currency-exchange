@@ -5,22 +5,55 @@ import {
   Route
 } from 'react-router-dom';
 import HeaderButtons from './HeaderButtons';
+import Login from './Login';
+
+import password from './config';
 
 import logo from './logo.jpg';
 
-class App extends React.Component {
+class App extends React.Component <{}, {isLoggedIn: boolean}> {
+
+  constructor(props: object) {
+    super(props);
+    this.state = {
+      isLoggedIn: false
+    };
+    this.handleLoginClick = this.handleLoginClick.bind(this);
+  }
+
+  public handleLoginClick(input: string) {
+    let mismatchCounter = 0;
+    for (let idx = 0; idx < input.length; idx++) {
+      if (input[idx] === password[idx]) {
+        mismatchCounter++;
+      }
+    }
+    if (mismatchCounter) {
+      this.setState({
+        isLoggedIn: true
+      });
+    }
+  }
 
   public render() {
 
-    const exact: boolean = true;
-
     const home = () => {
-      return <div>Home page coming</div>;
+      if (this.state.isLoggedIn) {
+        return <div>Home page coming</div>;
+      }
+
+      return <Login handleLoginClick={this.handleLoginClick} />;
     };
 
     const admin = () => {
-      return <div>Admin page coming</div>;
+      if (this.state.isLoggedIn) {
+        return <div>Admin page coming</div>;
+      }
+
+      return <Login handleLoginClick={this.handleLoginClick} />;
     };
+
+    const exact: boolean = true;
 
     return (<Router>
         <div className="App">
