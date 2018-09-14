@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-class Login extends React.Component <{handleLoginClick: object}, {input: string}> {
+class Login extends React.Component <{handleLoginClick(input: string): void}, {input: string}> {
 
-  constructor(props: {handleLoginClick: object}) {
+  constructor(props: {handleLoginClick(input: string): void}) {
     super(props);
     this.state = {
       input: ''
@@ -19,7 +19,7 @@ class Login extends React.Component <{handleLoginClick: object}, {input: string}
 
   public handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(this.state.input);
+    this.props.handleLoginClick.bind(this)(this.state.input);
   }
 
   public render() {
